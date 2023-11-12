@@ -1,0 +1,70 @@
+{{>navAdmin}}
+
+<div class="container-formulario">
+    <h2 class="text-center" style="color: brown;margin-top: 2rem;">
+        Creacion de Productos
+    </h2>
+    <form class="formulario-actualizacion" action="/producto" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre">
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precio" name="precio">
+        </div>
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen</label>
+            <input type="file" id="imagen" class="form-control" id="imagen" name="image" value="/assets/sinimagen.png">
+            <div class="img-container">
+                <img id="miImagen" src="/assets/sinimagen.png" alt="imagen">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="select" class="form-label">Categoria de Producto</label>
+            <select class="form-select" name="categoria" id="categorias">
+                <option value="1">Tortas</option>
+                <option value="2">casamiento</option>
+                <option value="3">BabyShower</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <input type="text" class="form-control" id="descripcion" name="descripcion">
+        </div>
+        <div class="botones-container">
+            <button type="submit" class="btn btn-outline-warning w-50">Crear Producto</button>
+            <button type="reset" class="btn btn-outline-danger w-50">Borrar Datos</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    const imagen = document.getElementById('imagen')
+    const miImage = document.getElementById('miImagen')
+    imagen.addEventListener('change', () => {
+        const lector = new FileReader()
+        const urlImagen = URL.createObjectURL(imagen.files[0])
+        miImage.src = urlImagen
+        console.log(urlImagen)
+    })
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+{{>footerAdmin}}

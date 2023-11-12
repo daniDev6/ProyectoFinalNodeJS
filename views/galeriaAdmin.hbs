@@ -1,0 +1,83 @@
+{{>navAdmin}}
+<style>
+    h2{
+        text-align: center;
+    }
+</style>
+<h2>Tortas</h2>
+<div class="galeriaTotal-container">
+    {{#each tortas}}
+    <div class="galeria-item-admin">
+        <div class="galeria-img-container">
+            <img src="{{imagen.secure_url}}">
+        </div>
+        <div class="conteiner-btn-edit">
+            <a href="/producto/update/{{_id}}" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></a>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<h2>Casamiento</h2>
+<div class="galeriaTotal-container">
+    {{#each casamiento}}
+    <div class="galeria-item-admin">
+        <div class="galeria-img-container">
+            <img src="{{imagen.secure_url}}">
+        </div>
+        <div class="conteiner-btn-edit">
+            <a href="/producto/update/{{_id}}" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></a>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<h2>BabyShower</h2>
+<div class="galeriaTotal-container">
+    {{#each baby}}
+    <div class="galeria-item-admin">
+        <div class="galeria-img-container">
+            <img src="{{imagen.secure_url}}">
+        </div>
+        <div class="conteiner-btn-edit">
+            <a href="/producto/update/{{_id}}" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></a>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+
+
+{{!-- {{#each tortas}}
+{{#with this}}
+<h2>Tortas</h2>
+<ul>
+    <li>
+        <h3>{{nombre}}</h3>
+        <p>Precio: ${{precio}}</p>
+        <p>Descripción: {{descripcion}}</p>
+        <img src="{{imagen.secure_url}}" alt="{{nombre}}" </ul>
+        {{/with}}
+        {{/each}}
+        {{#each casamiento}}
+        {{#with this}}
+        <h2>Casamiento</h2>
+        <ul>
+            <li>
+                <h3>{{nombre}}</h3>
+                <p>Precio: ${{precio}}</p>
+                <p>Descripción: {{descripcion}}</p>
+                <img src="{{imagen.secure_url}}" alt="{{nombre}}" </ul>
+                {{/with}}
+                {{/each}}
+                {{#each baby}}
+                {{#with this}}
+                <h2>BabyShower</h2>
+                <ul>
+                    <li>
+                        <h3>{{nombre}}</h3>
+                        <p>Precio: ${{precio}}</p>
+                        <p>Descripción: {{descripcion}}</p>
+                        <img src="{{imagen.secure_url}}" alt="{{nombre}}" </ul>
+                        {{/with}}
+                        {{/each}} --}}
+
+                        {{>footerAdmin}}

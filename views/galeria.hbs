@@ -1,0 +1,81 @@
+{{>navUsuario}}
+<div class="galeriaTotal-container by-user">
+    <div class="galeria-item">
+    <h2>Tortas</h2>
+    <div class="swiffy-slider" id="importante">
+        <ul class="slider-container">
+            {{#each tortas}}
+            <li class="slider-item">
+                <img src="{{imagen.secure_url}}">
+                <div class="conteiner-btn-edit">
+                    <a href="/producto/{{_id}}" class="btn-edit btn-edit-user">ver mas</a>
+                </div>
+            </li>
+
+            {{/each}}
+        </ul>
+
+        <button type="button" class="slider-nav"></button>
+        <button type="button" class="slider-nav slider-nav-next"></button>
+
+        <div class="slider-indicators">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+    </div>
+
+<div class="galeria-item">
+    <h2>casamiento</h2>
+    <div class="swiffy-slider" id="importante">
+        <ul class="slider-container">
+            {{#each casamiento}}
+            <li class="slider-item">
+                <img src="{{imagen.secure_url}}">
+                <div class="conteiner-btn-edit">
+                    <a href="/producto/{{_id}}" class="btn-edit btn-edit-user">ver mas</a>
+                </div>
+            </li>
+
+            {{/each}}
+        </ul>
+
+        <button type="button" class="slider-nav"></button>
+        <button type="button" class="slider-nav slider-nav-next"></button>
+
+        <div class="slider-indicators">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+</div>
+<div class="galeria-item">
+    <h2>BabyShower</h2>
+    <div class="swiffy-slider" id="importante">
+        <ul class="slider-container">
+            {{#each baby}}
+            <li class="slider-item">
+                <img src="{{imagen.secure_url}}">
+                <div class="conteiner-btn-edit">
+
+                    <a href="/producto/{{_id}}" class="btn-edit btn-edit-user">ver mas</a>
+                </div>
+            </li>
+
+            {{/each}}
+        </ul>
+
+        <button type="button" class="slider-nav"></button>
+        <button type="button" class="slider-nav slider-nav-next"></button>
+
+        <div class="slider-indicators">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+</div>
+</div>
+{{>footerUsuario}}

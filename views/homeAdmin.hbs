@@ -1,0 +1,116 @@
+{{>navAdmin}}
+<main>
+    <section>
+        <div class="hero-img">
+            {{#each home}}
+            <div class="hero-img-container">
+                <img src="{{imagen.secure_url}}">
+            </div>
+            <div class="conteiner-btn-edit">
+                <a href="/producto/update/home/{{_id}}" class="btn-edit"><i class="fa-regular fa-pen-to-square"></i></a>
+            </div>
+            <div class="hero-text">
+            <h1>{{nombre}}</h1>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+    <section>
+        <article class="contenedor">
+            <h2>Variedad de Tortas</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic aspernatur sed, similique maiores fuga qui
+                provident quibusdam facilis mollitia nihil inventore est? Unde porro repudiandae nihil aut molestiae
+                odit ut.
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas animi, dolores architecto soluta
+                sequi error omnis praesentium repudiandae, numquam eligendi iure cum magnam placeat cumque eum, quod
+                voluptates officiis quo!
+            </p>
+            <div class="galeriaTotal-container">
+                {{#each tortas}}
+                <div class="galeria-item-admin">
+                    <div class="galeria-img-container">
+                        <img src="{{imagen.secure_url}}">
+                    </div>
+                    <div class="conteiner-btn-edit">
+                        <a href="/producto/update/{{_id}}" class="btn-edit"><i
+                                class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </article>
+    </section>
+    <section>
+        <article class="contenedor">
+            <h2>Decoracion Eventos && Fiestas de cumpleaños</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis, optio illum est expedita, fugit tenetur
+                eligendi iusto itaque nobis cum dolor laborum officiis voluptates minima suscipit aliquam debitis omnis
+                magnam?
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia provident quia consectetur error sit?
+                Aspernatur odit fugiat minima sapiente, illum magni sit quae similique debitis eveniet in labore
+                provident nesciunt.
+            </p>
+            <div class="galeriaTotal-container">
+                {{#each casamiento}}
+                <div class="galeria-item-admin">
+                    <div class="galeria-img-container">
+                        <img src="{{imagen.secure_url}}">
+                    </div>
+                    <div class="conteiner-btn-edit">
+                        <a href="/producto/update/{{_id}}" class="btn-edit"><i
+                                class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </article>
+    </section>
+    <section>
+        <article class="contenedor">
+            <h2>Decoracion con tematicas</h2>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste rem, aliquam expedita molestiae nulla
+                iure soluta libero ea veniam quibusdam ipsam labore cum eligendi hic reprehenderit distinctio asperiores
+                quas temporibus?
+            </p>
+            <div class="galeriaTotal-container">
+                {{#each casamiento}}
+                <div class="galeria-item-admin">
+                    <div class="galeria-img-container">
+                        <img src="{{imagen.secure_url}}">
+                    </div>
+                    <div class="conteiner-btn-edit">
+                        <a href="/producto/update/{{_id}}" class="btn-edit"><i
+                                class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </article>
+    </section>
+    <section>
+        <article class="contenedor">
+            <h2>Baby Shawer</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, at, similique soluta tempora fugiat
+                odio fuga hic, tempore earum quia ipsam sapiente fugit libero! Dolorem ipsam dignissimos aspernatur
+                nobis eveniet!</p>
+            <div class="galeriaTotal-container">
+                {{#each baby}}
+                <div class="galeria-item-admin">
+                    <div class="galeria-img-container">
+                        <img src="{{imagen.secure_url}}">
+                    </div>
+                    <div class="conteiner-btn-edit">
+                        <a href="/producto/update/{{_id}}" class="btn-edit"><i
+                                class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </article>
+    </section>
+
+
+
+</main>
+{{>footerAdmin}}

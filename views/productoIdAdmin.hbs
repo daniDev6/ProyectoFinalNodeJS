@@ -1,0 +1,27 @@
+{{>navAdmin}}
+
+
+
+<div class="card-producto">
+    <div class="card-img-container">
+        <img src="{{producto.imagen.secure_url}}" alt="">
+    </div>
+    <div class="card-text-admin card-text">
+    <div class="card-text">
+    <h3>{{producto.nombre}}</h3>
+    <p class="categoria">{{producto.categoria}}</p>
+    <p class="descripcion">{{producto.descripcion}}</p>
+    <p class="precio">{{producto.precio}}</p>
+    </div>
+    <div class="btn-container">
+        <a href="/update/{{producto._id}}" class="btn btn-primary">actualizar</a>
+        <a href="/borrar/{{producto._id}}" class="btn btn-danger">borrar</a>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+{{>footerAdmin}}

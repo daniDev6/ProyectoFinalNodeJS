@@ -1,0 +1,62 @@
+{{>navAdmin}}
+
+
+
+    <h3 style="text-align: center;" class="m-4">Imagen actual en galeria</h3>
+<div class="img-container">
+    <img src="{{producto.imagen.secure_url}}" alt="">
+</div>
+<div class="container-formulario">
+    <h2 class="text-center" style="color: brown;">
+        Formulario de Actualización
+    </h2>
+    <form class="formulario-actualizacion" action="/producto/update/{{producto._id}}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+                <label for="nombre" class="form-label">Titulo de la pagina: </label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{producto.nombre}}"> 
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen del home</label>
+                <input type="file" id="imagen" class="form-control" id="imagen" name="image">
+                <div class="img-container">
+                    <img id="miImagen" src="{{producto.imagen.secure_url}}" alt="imagen">
+                </div>
+            </div>
+            <div class="botones-container">
+                <button type="submit" class="btn btn-outline-warning w-50">Actualizar Datos</button>
+                <button type="reset" class="btn btn-outline-danger w-50">Borrar Datos</button>
+            </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{>footerAdmin}}

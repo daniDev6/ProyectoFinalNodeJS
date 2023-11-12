@@ -1,0 +1,46 @@
+{{>navAdmin}}
+
+<div class="contacto-form">
+
+
+<form class="row g-3" action="/pedido/admin" method="post">
+    <h2>Contacto</h2>
+    <div class="col-md-6">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="nombre" required class="form-control" id="nombre" placeholder="pX1Pm@example.com" name="nombre">
+    </div>
+    <div class="col-md-6">
+        <label for="email" class="form-label">Email Contacto</label>
+        <input type="email" required class="form-control" id="email" placeholder="pX1Pm@example.com" name="email">
+    </div>
+    <div class="col-md-6">
+        <label for="numero" class="form-label">Numero de Contacto</label>
+        <input type="number" required class="form-control" id="numero" name="telefono">
+    </div>
+    <div class="col-12">
+        <label for="consulta" class="form-label">Detalle de la consulta</label>
+        <input type="text" class="form-control" required id="consulta" placeholder="Solicito presupuesto para fiesta de 15..." name="consulta">
+    </div>
+    <div class="col-md-4">
+        <label for="inputState" class="form-label">Tipo de evento</label>
+        <select id="inputState" class="form-select" required name="categoria">
+            <option selected>Elige el tipo de evento</option>
+            <option value="1">decoracion y torta</option>
+            <option value="2">Solo torta</option>
+            <option value="3">Solo decoracion</option>
+        </select>
+    </div>
+    <div class="col-12 center">
+        <button type="submit" class="btn btn-send btn-primary">Enviar</button>
+        <button type="reset" class="btn btn-send btn-danger">Borrar Datos</button></button>
+    </div>
+</form>
+
+</div>
+
+
+
+
+
+
+{{>footerAdmin}}

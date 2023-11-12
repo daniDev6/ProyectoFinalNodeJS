@@ -1,0 +1,87 @@
+{{>navAdmin}}
+    <h3 style="text-align: center;" class="m-4">Imagen actual en galeria</h3>
+<div class="img-container">
+    <img src="{{producto.imagen.secure_url}}" alt="">
+</div>
+<div class="container-formulario">
+    <h2 class="text-center" style="color: brown;">
+        Formulario de Actualización
+    </h2>
+    <form class="formulario-actualizacion" action="/producto/update/{{producto._id}}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value={{producto.nombre}}> 
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="precio" name="precio" value={{producto.precio}}>
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="file" id="imagen" class="form-control" id="imagen" name="image">
+                <div class="img-container">
+                    <img id="miImagen" src="{{producto.imagen.secure_url}}" alt="imagen">
+                </div>
+            </div>
+            <div class="mb-3">
+            <label for="select" class="form-label">Categoria de Producto</label>
+            <select class="form-select" name="categoria" id="categorias"></select>
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{producto.descripcion}}">
+            </div>
+            <div class="botones-container">
+                <button type="submit" class="btn btn-outline-warning w-50">Actualizar Datos</button>
+                <button type="reset" class="btn btn-outline-danger w-50">Borrar Datos</button>
+            </div>
+    </form>
+</div>
+
+
+
+
+
+
+{{>footerAdmin}}
+<script>
+    const imagen=document.getElementById('imagen')
+    const miImagen=document.getElementById('miImagen')
+    imagen.addEventListener('change',()=>{
+        const lector=new FileReader()
+        const urlImagen=URL.createObjectURL(imagen.files[0])
+        miImagen.src=urlImagen
+        console.log(urlImagen)
+    })
+    const categorias=document.getElementById('categorias')
+
+    const cargarOpciones=(categoria)=>{
+        if(categoria==1){
+            categorias.innerHTML=`
+            <option value='1' selected>Tortas</option>
+            <option value='2'>casamiento</option>
+            <option value='3'>babyShower</option>
+        `
+        }else if(categoria==2){
+            categorias.innerHTML=`
+            <option value='1' >Tortas</option>
+            <option value='2' selected>casamiento</option>
+            <option value='3'>babyShower</option>
+        `
+        }else if(categoria==3){
+            categorias.innerHTML=`
+            <option value='1'>Tortas</option>
+            <option value='2'>casamiento</option>
+            <option value='3' selected>babyShower</option>
+        `
+        }
+        
+    }
+
+cargarOpciones({{producto.categoria}})
+
+console.log(`${{producto.descripcion}}`)
+
+
+
+</script>

@@ -1,0 +1,20 @@
+{{>navAdmin}}
+<div class="contacto-form">
+    <h2>Enviado con exito</h2>
+    <p>Gracias por contactarnos </p>
+    <button class="btn btn-primary" onclick="irHome()">Volver al home</button>
+    <button class="btn btn-primary" onclick="irContacto()">Realizar otra consulta</button>
+</div>
+<script>
+    const irHome = () => {
+        window.location.href = "/admin/home"
+    }
+    const irContacto = () => {
+        window.location.href = "/admin/formulario"
+    }
+</script>
+
+
+
+
+{{>footerAdmin}}

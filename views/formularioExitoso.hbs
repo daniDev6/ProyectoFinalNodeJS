@@ -1,0 +1,51 @@
+{{>navUsuario}}
+<style>
+    .contacto-form-exitoso{
+        width: 60%;
+        max-width: 1000px;
+        margin: auto;
+        border-radius: 1rem;
+        padding: 1rem;
+        border: 1px solid white;
+        background-color: black;
+
+    }
+    body{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 400px;
+    }
+    .contacto-form-exitoso>p{
+        text-align: center;
+    }
+    .btn-container{
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
+<main>
+
+<div class="contacto-form-exitoso">
+    <h2>Enviado con exito</h2>
+    <p>Gracias por contactarnos </p>
+    <div class="btn-container">
+    <button class="btn btn-primary" onclick="irHome()">Volver al home</button>
+    <button class="btn btn-primary" onclick="irContacto()">Realizar otra consulta</button>
+    </div>
+</div>
+</main>
+<script>
+    const irHome = () => {
+        window.location.href = "/cliente/home"
+    }
+    const irContacto = () => {
+        window.location.href = "/cliente/formulario"
+    }
+</script>
+
+
+
+
+{{>footerUsuario}}
