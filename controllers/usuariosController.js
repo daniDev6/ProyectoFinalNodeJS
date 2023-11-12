@@ -3,9 +3,13 @@ import bcrypt from 'bcrypt'
 import _ from 'lodash';
 import { dbSecretFields } from '../config.js'
 export const login = async (req, res) => {
+    console.log(req.body)
     try {
         const { email, password } = req.body
+        const usuarios=await Usuario.find()
+        console.log(usuarios)
         const usuario = await Usuario.findOne({ email: email })
+        console.log('esto es usuario|: ', usuario)
         if (!usuario) {
             res.send('usuario no encontrado')
         }

@@ -14,7 +14,7 @@ router.get('/traer',loginRequired,getAllAdmins);
 //ruta para traer Admin por id
 router.get('/traer/:id',loginRequired,getAdminById);
 //ruta para crear Admin
-router.post('/crear',loginRequired,createAdmin);
+router.post('/crear',createAdmin);
 //ruta para actualizar adminitrador
 router.put('/update/:id',loginRequired,updateAdmin);
 //ruta para eliminar adminitrador
