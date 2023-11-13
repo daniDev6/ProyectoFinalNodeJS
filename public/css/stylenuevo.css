@@ -217,6 +217,9 @@ article{
     position: relative;
     display: flex;
     justify-content: center;
+    min-width: 400px;
+    width: 90%;
+    max-width: 600px;
 }
 .galeria-item{
     flex-direction: column;
