@@ -30,11 +30,7 @@
         <label for="numero" class="form-label">Numero de Contacto</label>
         <input type="number" required class="form-control" id="numero" name="telefono">
     </div>
-    <div class="col-12">
-        <label for="consulta" class="form-label">Detalle de la consulta</label>
-        <input type="text" class="form-control" required id="consulta" placeholder="Solicito presupuesto para fiesta de 15..." name="consulta">
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <label for="inputState" class="form-label">Tipo de evento</label>
         <select id="inputState" class="form-select" required name="categoria">
             <option selected>Elige el tipo de evento</option>
@@ -42,6 +38,10 @@
             <option value="2">Solo torta</option>
             <option value="3">Solo decoracion</option>
         </select>
+    </div>
+    <div class="col-12">
+        <label for="consulta" class="form-label">Detalle de la consulta</label>
+        <input type="text" class="form-control" required id="consulta" placeholder="Solicito presupuesto para fiesta de 15..." name="consulta">
     </div>
     <div class="col-12 center">
         <button type="submit" class="btn btn-send btn-primary">Enviar</button>

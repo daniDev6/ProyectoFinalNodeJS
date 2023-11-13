@@ -517,11 +517,9 @@ footer{
 }
 .img-icon-container{
     width: 100px;
-    margin:1rem auto;
 }
 .img-icon-container>img{
     width: 100%;
-
 }
 .nosotros li a,
 .pagos li a{
