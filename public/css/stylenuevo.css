@@ -466,24 +466,35 @@ article{
 
 /*------footer----------------*/
 footer{
-    height: 300px;
+
     padding: 10px;
     background-color: var(--rosa);
 
 }
+
 .footer{
+    text-align: center;
     display: flex;
-    justify-content: flex-end;
-}
-.footer>ul{
-    display: flex;
+    flex-direction: column;
     gap: 1rem;
     color: white;
-    width: 60%;
+    width: 80%;
+    margin: auto;
+
+    font-size: .8rem;
+    justify-content: flex-end;
 }
 .nosotrosM{
-    width: 50%;
+    width:50%
+}
+@media(min-width: 678px){
+    .footer{
+        flex-direction: row;
+    }
+    .nosotrosM{
+        width: 30%;
 
+    }
 }
 .nosotros{
     display: flex;
@@ -494,30 +505,29 @@ footer{
     display: flex;
     width: 100%;
     margin-top: 10px;
+}
+
+.pagos{
+    font-size: 2rem;
+    color: #09f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+.img-icon-container{
+    width: 100px;
+    margin:1rem auto;
+}
+.img-icon-container>img{
+    width: 100%;
 
 }
 .nosotros li a,
 .pagos li a{
     color: white;
     width:100%;
-
 }
-.pagos{
-    height: 70%;
-    width: 100%;
-    background-image: url(../assets/img/metodoPagos.png);
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-/* .pagos li{
-    width: 30%;
-    margin-top: 15px;
-}
-.pagos li a img{
-    width: 100px;
-} */
-
 .linea{
     width: 60%;
     height: 1px;
