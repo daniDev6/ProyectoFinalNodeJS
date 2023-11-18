@@ -2,7 +2,6 @@ import express, { json } from 'express';
 import cors from 'cors'
 import morgan from 'morgan'
 import fileUpload from 'express-fileupload';
-
 import usuarioRouter from './router/usuariosRouter.js'
 import adminRouter from './router/adminRouter.js';
 import clienteRouter from './router/clienteRouter.js';
@@ -15,6 +14,13 @@ import handlebars from 'express-handlebars';
 import { fileURLToPath } from 'url';
 import path,{ dirname } from 'path';
 
+
+
+
+
+
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -22,7 +28,6 @@ const app=express()
 
 
 const MongoDBStoreSession = MongoDBStore(expressSession);
-
 app.engine('.hbs',handlebars.engine({extname:'.hbs',defaultLayout:'main.hbs'}));
 app.set('view engine','hbs');
 app.set('views','./views');
@@ -61,20 +66,15 @@ app.use(expressSession({
 }))
 // Configura el middleware para servir archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-app.use('/usuario',usuarioRouter)
+app.use('/usuario',usuarioRouter)//cuando estes en ruta usuario, usa todo lo q tengas dentro de usuarioRouter
 app.use('/admin', adminRouter);
 app.use('/cliente', clienteRouter);
 app.use('/producto', productoRouter);
 app.use('/pedido', pedidoRouter);
 app.get('/*', (req, res) => {
-    res.redirect('/usuario/login');
+    if(req.session){
+        res.redirect('/admin/home');
+    }
+    res.redirect('/usuario/home');
 })
 export default app
-
-
-
-
-

@@ -12,6 +12,22 @@ import { uploadCasamientoPhoto, uploadCumplePhoto, uploadBabyPhoto,uploadHomePho
 6-fiestas infantiles
 
 */
+
+const analizarCategoria=async(producto)=>{
+    if (producto.categoria == 1) {
+        return  await uploadCasamientoPhoto(req.files.image.tempFilePath);
+    } else if (producto.categoria == 2) {
+        return  await uploadCumplePhoto(req.files.image.tempFilePath);
+    } else if (producto.categoria == 3) {
+        return  await uploadBabyPhoto(req.files.image.tempFilePath);
+    }else if (producto.categoria == 4) {
+        return  await uploadHomePhoto(req.files.image.tempFilePath);
+} else{
+    res.render('error',{
+        error: 'no se subio la imagen'
+    })
+}
+}
 export const getAllProductos = async (req, res) => {
     try {
         if (req.files?.image) {
@@ -34,12 +50,11 @@ export const getProductoById = async (req, res) => {
         if (!producto) {
             return res.status(404).json({ error: "producto no encontrado" });
         }
-        console.log(producto)
         res.render('productoId',{
             producto
         })
     } catch (err) {
-        res.status(500).json({ error: "error al obtener producto" });
+        res.status(500).render('error',{ error: "error al obtener producto" });
     }
 }
 
@@ -60,76 +75,27 @@ export const createProducto = async (req, res) => {
             const tempFilePath = req.files.image.tempFilePath
             const originalName = req.files.image.name
             const fileExtencion = originalName.split('.').pop()
-            if (req.body.categoria == 1) {
-                const productImg = await uploadCumplePhoto(req.files.image.tempFilePath);
-                productoNuevo.imagen = {
-                    public_id: productImg.public_id,
-                    secure_url: productImg.secure_url
-                }
-                const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
-                await fs.rename(tempFilePath, newTempFilePath, (err) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                })
-                await fs.unlink(req.files.image.tempFilePath);
-                console.log(req.files.image.tempFilePath)
-                console.log('se subio la imagen')
-            } else if (req.body.categoria == 2) {
-                const productImg = await uploadCasamientoPhoto(req.files.image.tempFilePath);
-                productoNuevo.imagen = {
-                    public_id: productImg.public_id,
-                    secure_url: productImg.secure_url
-                }
-                const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
-                await fs.rename(tempFilePath, newTempFilePath, (err) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                })
-                await fs.unlink(req.files.image.tempFilePath);
-                console.log(req.files.image.tempFilePath)
-                console.log('se subio la imagen')
-            } else if (req.body.categoria == 3) {
-                const productImg = await uploadBabyPhoto(req.files.image.tempFilePath);
-                productoNuevo.imagen = {
-                    public_id: productImg.public_id,
-                    secure_url: productImg.secure_url
-                }
-                const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
-                await fs.rename(tempFilePath, newTempFilePath, (err) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                })
-                await fs.unlink(req.files.image.tempFilePath);
-                console.log(req.files.image.tempFilePath)
-                console.log('se subio la imagen')
-
-        }else if (req.body.categoria == 4) {
-                const productImg = await uploadHomePhoto(req.files.image.tempFilePath);
-                productoNuevo.imagen = {
-                    public_id: productImg.public_id,
-                    secure_url: productImg.secure_url
-                }
-                const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
-                await fs.rename(tempFilePath, newTempFilePath, (err) => {
-                    if (err) {
-                        console.log(err)
-                    }
-                })
-                await fs.unlink(req.files.image.tempFilePath);
-                console.log(req.files.image.tempFilePath)
-                console.log('se subio la imagen')
+            const productImg = await analizarCategoria(req.body);
+            productoNuevo.imagen = {
+                public_id: productImg.public_id,
+                secure_url: productImg.secure_url
             }
-
+            const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
+            await fs.rename(tempFilePath, newTempFilePath, (err) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
+            await fs.unlink(req.files.image.tempFilePath);
+            console.log(req.files.image.tempFilePath)
+            console.log('se subio la imagen')
         } else {
             console.log('no se subio la imagen')
         }
 
         await productoNuevo.save();
         const producto=await Producto.findById(productoNuevo._id).lean();
-        res.render('productoId', {
+        res.render('productoIdAdmin', {
             producto
         })
     } catch (err) {
@@ -151,24 +117,7 @@ export const createProductos = async (req, res) => {
             const tempFilePath = req.files.image.tempFilePath
             const originalName = req.files.image.name
             const fileExtencion = originalName.split('.').pop()
-            let productImg
-            if (req.body.categoria == 1) {
-                productImg = await uploadCasamientoPhoto(req.files.image.tempFilePath);
-
-            } else if (req.body.categoria == 2) {
-                productImg = await uploadCumplePhoto(req.files.image.tempFilePath);
-
-
-            } else if (req.body.categoria == 3) {
-                productImg = await uploadBabyPhoto(req.files.image.tempFilePath);
-
-            }else if (req.body.categoria == 4) {
-            productImg = await uploadHomePhoto(req.files.image.tempFilePath);
-        } else{
-            res.render('error',{
-                error: 'no se subio la imagen'
-            })
-        }
+            let productImg=analizarCategoria(req.body)
         productoNuevo.imagen = {
             public_id: productImg.public_id,
             secure_url: productImg.secure_url
@@ -183,13 +132,32 @@ export const createProductos = async (req, res) => {
         console.log(req.files.image.tempFilePath)
         console.log('se subio la imagen')
         await productoNuevo.save();
-        res.status(201).json(productoNuevo);
+        const producto=await Producto.findById(productoNuevo._id).lean();
+        res.render('productoIdAdmin', {
+            productoNuevo
+        })
     }
     } catch (err) {
-        console.log(err)
-        res.send(err)
+        res.render('error',{
+            error: 'no se creo el producto'
+        })
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const deleteProducto = async (req, res) => {
     try {
@@ -244,22 +212,7 @@ export const updateProducto = async (req, res) => {
             const tempFilePath = req.files.image.tempFilePath
             const originalName = req.files.image.name
             const fileExtencion = originalName.split('.').pop()
-            let productImg 
-            if (productoNuevo.categoria == 1) {
-                productImg = await uploadCasamientoPhoto(req.files.image.tempFilePath);
-
-            } else if (productoNuevo.categoria == 2) {
-                productImg = await uploadCumplePhoto(req.files.image.tempFilePath);
-
-            } else if (productoNuevo.categoria == 3) {
-                productImg = await uploadBabyPhoto(req.files.image.tempFilePath);
-            }else if (productoNuevo.categoria == 4) {
-                productImg = await uploadHomePhoto(req.files.image.tempFilePath);
-            }else {
-                res.render('erros',{
-                    error:"no se subio la imagen"
-                })
-            }
+            let productImg=analizarCategoria(productoNuevo)
             productoNuevo.imagen = {
                 public_id: productImg.public_id,
                 secure_url: productImg.secure_url
@@ -267,7 +220,7 @@ export const updateProducto = async (req, res) => {
             const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
             await fs.rename(tempFilePath, newTempFilePath, (err) => {
                 if (err) {
-                    res.render('erros',{
+                    res.render('error',{
                         error:err
                     })
                 }
@@ -283,7 +236,7 @@ export const updateProducto = async (req, res) => {
         })
     }
     catch (err) {
-        res.status(500).render('erros',{error: "error al actualizar producto" });
+        res.status(500).render('error',{error: "error al actualizar producto" });
     }
 }
 
@@ -291,7 +244,7 @@ export const updateProducto = async (req, res) => {
 export const viewUpdateHomeProduct=async(req,res)=>{
     const producto=await Producto.findById(req.params.id).lean();
     if(!producto){
-        return res.status(404).render('erros',{error:"producto no encontrado"});
+        return res.status(404).render('error',{error:"producto no encontrado"});
     }
     console.log(producto)
     res.render('homeEdit',{

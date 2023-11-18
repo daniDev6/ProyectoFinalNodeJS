@@ -13,7 +13,6 @@ html {
     /* font-family: 'Dancing Script', cursive; */
     font-size: 16px;
     scroll-behavior: smooth;
-    overflow-x: hidden;
 
     min-width: 300px;
 }
@@ -48,6 +47,11 @@ main{
 .hero-img{
     text-align: center;
     position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 .hero-text{
     position: absolute;
@@ -64,7 +68,6 @@ main{
     font-family: 'Dancing Script', cursive;     
     font-size: 3rem;
     color: white;
-    border: 1px solid white;
     border-radius: 1rem;
     padding: .5rem;
     transition: all 0.5s ease-in;
@@ -74,6 +77,17 @@ main{
     background-position: center;
     background-size: cover; */
 }
+.hero-img-container{
+    width: 80%;
+    margin: auto;
+
+}
+.hero-img-container>img{
+    width: 100%;
+    display: block;
+}
+
+
 .hero-img:hover .conteiner-btn-edit{
     z-index: 1000;
 }
@@ -85,7 +99,7 @@ main{
 
 .img-container{
     width: 40%;
-    border: 1px solid white;
+
     margin:1rem auto;
 }
 .img-container>img{
@@ -101,6 +115,7 @@ section{
     justify-content: center;
     
 }
+
 article{
     width: 90%;
     display: flex;
@@ -109,6 +124,7 @@ article{
     flex-direction: column;
     max-width: 1500px;
     min-width: 300px;
+    margin: auto;
 }
 
 
@@ -138,6 +154,9 @@ article{
 .login-img{
     width: 30px;
     height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
 }
 .login-img>img{
     width: 100%;
@@ -176,7 +195,7 @@ article{
 
 #menu:checked~.menu-movile {
     top: 3rem;
-    z-index: 1;
+    z-index: 1002;
 }
 
 @media(min-width:500px) {
@@ -208,18 +227,23 @@ article{
     max-width: 90%;
     margin:1rem auto;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    align-items: center;
     gap: 25px;
+
 }
 .by-user{
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 .galeria-item-admin,.galeria-item{
     position: relative;
     display: flex;
     justify-content: center;
-    min-width: 400px;
+    min-width: 300px;
     width: 90%;
     max-width: 600px;
+    margin: auto;
+
 }
 .galeria-item{
     flex-direction: column;
@@ -232,6 +256,7 @@ article{
 }
 .galeria-img-container>img{
     width: 100%;
+    display: block;
 }
 
 .galeria-item-admin:hover .conteiner-btn-edit{
@@ -283,19 +308,20 @@ article{
     align-items: center;
     width: 100%;
     height: 100%;
-    transition: all .5s ease;
+
 }
 
-
+.conteiner-btn-edit:hover .btn-edit {
+    color: #09f;
+}
 
 .slider-item:hover .btn-edit-user {
-    
     color: white;
     background-color: var(--rosa-Ligth);
 }
 
 .btn-edit-user {
-    padding: 1rem;
+    padding: .2rem;
     background-color: var(--rosa-Ligth);
     color: #23272E;
     border-radius: 1rem;
@@ -308,8 +334,8 @@ article{
 }
 .btn-edit {
     z-index: 1000;
-    transition: all 1s ease;
-    font-size: 2rem;
+    transition: all .1s;
+    font-size: 1rem;
     color: transparent;
     background-color: transparent;
 }
