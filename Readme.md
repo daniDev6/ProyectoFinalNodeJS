@@ -1,8 +1,23 @@
 # Tortas Y Decoraciones
 
-Descripción concisa de tu aplicación.
+Es una pagina para un empresa ficticia la cual se encarga de promocionar su trabajo.
 
-## Requisitos
+
+## Modo cliente
+
+En este modo usted puede navegar con y sin necesidad de loguearse
+
+
+## Modo Administrador
+
+En este modo usted puede navegar, editar, crear y modificar los productos que ofrece la pagina.
+
+si desea conocer el modo administrador lo invito a comunicarse conmigo: danielvillalbac97@gmail.com
+
+
+
+
+## Requisitos para usar la aplicacion en la maquina
 
 Asegúrate de tener instalado Node.js y npm en tu máquina.
 
@@ -10,7 +25,7 @@ Asegúrate de tener instalado Node.js y npm en tu máquina.
 
 1. **Clonar el repositorio:**
 
-   ```bash
+   ```
    git clone https://github.com/tu-usuario/tu-repo.git
    cd tu-repo
     npm install
@@ -50,29 +65,44 @@ npm start
 
 ```
 
-## Dependencias principales
+## Dependencias Principales
 
-Dependencias Principales
-Express: Framework web para Node.js
-MongoDB: Base de datos NoSQL
-Handlebars: Motor de plantillas
-Morgan: Middleware para el registro de solicitudes HTTP
-Cors: Middleware para el manejo de CORS
-Express Fileupload: Middleware para la carga de archivos
-
-
+| Dependencia          | Descripción                                      |
+|----------------------|--------------------------------------------------|
+| Express              | Framework web para Node.js                       |
+| MongoDB              | Base de datos NoSQL                              |
+| Handlebars           | Motor de plantillas                               |
+| Morgan               | Middleware para el registro de solicitudes HTTP  |
+| Cors                 | Middleware para el manejo de CORS                 |
+| Express Fileupload   | Middleware para la carga de archivos             |
 
 
 ## Configuración de Sesión
 La aplicación utiliza el middleware de manejo de sesiones con MongoDB para almacenar sesiones de usuario.
 
 Rutas Principales
+```
 /usuario: Rutas relacionadas con usuarios.
 /admin: Rutas para el panel de administración.
 /cliente: Rutas para el cliente.
 /producto: Rutas relacionadas con productos.
 /pedido: Rutas relacionadas con pedidos.
+```
+
+## Variables de entorno 
+```
+DB_MONGOATLAS=example
 
 
+API_NAME_CLOUD=example
+API_KEY_CLOUD=example
+API_KEY_SECRET=example
+
+
+
+SESSION_SECRET=example
+IS_PRODUCTION=example
+
+```
 
 
