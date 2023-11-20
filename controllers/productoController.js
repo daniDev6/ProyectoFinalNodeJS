@@ -71,7 +71,6 @@ export const createProducto = async (req, res) => {
         const productoNuevo = new Producto(req.body);
         console.log(req.files.image)
         if (req.files?.image) {
-            console.log('entro')
             const tempFilePath = req.files.image.tempFilePath
             const originalName = req.files.image.name
             const fileExtencion = originalName.split('.').pop()
@@ -87,10 +86,10 @@ export const createProducto = async (req, res) => {
                 }
             })
             await fs.unlink(req.files.image.tempFilePath);
-            console.log(req.files.image.tempFilePath)
-            console.log('se subio la imagen')
         } else {
-            console.log('no se subio la imagen')
+            res.render('error', {
+                error: 'no se subio la imagen'
+            })
         }
 
         await productoNuevo.save();
@@ -99,7 +98,6 @@ export const createProducto = async (req, res) => {
             producto
         })
     } catch (err) {
-        console.log(err)
         res.send(err)
     }
 }
@@ -125,12 +123,12 @@ export const createProductos = async (req, res) => {
         const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
         await fs.rename(tempFilePath, newTempFilePath, (err) => {
             if (err) {
-                console.log(err)
+                res.render('error', {
+                    error: 'no se subio la imagen'
+                })
             }
         })
         await fs.unlink(req.files.image.tempFilePath);
-        console.log(req.files.image.tempFilePath)
-        console.log('se subio la imagen')
         await productoNuevo.save();
         const producto=await Producto.findById(productoNuevo._id).lean();
         res.render('productoIdAdmin', {
@@ -195,7 +193,6 @@ export const viewUpdateProduct=async (req,res)=>{
 
 
 export const updateProducto = async (req, res) => {
-    console.log('entre a update')
     try {
         const productoId = req.params.id;
         const productoActualizado = await Producto.findById(productoId, req.body);
@@ -230,7 +227,6 @@ export const updateProducto = async (req, res) => {
         } 
 
         const producto=await Producto.findById(productoId).lean();
-        console.log(productoActualizado)
         res.render('productoIdAdmin', {
             producto
         })
@@ -246,7 +242,6 @@ export const viewUpdateHomeProduct=async(req,res)=>{
     if(!producto){
         return res.status(404).render('error',{error:"producto no encontrado"});
     }
-    console.log(producto)
     res.render('homeEdit',{
         producto
     })

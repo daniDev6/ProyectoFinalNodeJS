@@ -15,7 +15,6 @@ export const getClienteById=async (req,res)=>{
     try{
         // const cliente=await Cliente.findById(req.params.id);
         const cliente=await Cliente.findOne({email:email});
-        console.log("esto es cliente|: ",cliente.password,'password: ',password);
         if(!cliente ){
             return res.status(404).json({error:"cliente no encontrado"});
         }else if(cliente.password===password){

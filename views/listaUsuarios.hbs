@@ -1,0 +1,37 @@
+{{>navAdmin}}
+<main>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+            {{#each admin}}
+        <tr>
+            <th scope="row">{{this._id}}</th>
+            <td>{{this.nombre}}</td>
+            <td>{{this.email}}</td>
+            <td>Administrador</td>
+            <td><form action="/usuario/delete/{{this._id}}" method="post"><button class="btn btn-danger" type="submit">Eliminar</button></form></td>
+        </tr>
+            {{/each}}
+            {{#each usuarios}}
+        <tr>
+            <th scope="row">{{this._id}}</th>
+            <td>{{this.nombre}}</td>
+            <td>{{this.email}}</td>
+            <td>Usuario</td>
+            <td><form action="/usuario/delete/{{this._id}}" method="post"><button class="btn btn-danger" type="submit">Eliminar</button></form></td>
+        </tr>
+            {{/each}}
+    </tbody>
+</table>
+</main>
+
+{{>footerAdmin}}

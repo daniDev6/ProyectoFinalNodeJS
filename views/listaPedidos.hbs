@@ -1,0 +1,27 @@
+{{>navAdmin}}
+<main>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Consulta</th>
+            <th scope="col">Contacto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {{#each pedido}}
+            <th scope="row">{{this.id}}</th>
+            <td>{{this.nombre}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.consulta}}</td>
+            <td>{{this.contacto}}</td>
+        </tr>
+            {{/each}}
+    </tbody>
+</table>
+</main>
+{{>footerAdmin}}

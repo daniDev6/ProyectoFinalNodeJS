@@ -7,20 +7,19 @@
     text-decoration: none !important;
     list-style: none;
 }
-
 body,
 html {
     /* font-family: 'Dancing Script', cursive; */
     font-size: 16px;
     scroll-behavior: smooth;
-
     min-width: 300px;
 }
-
 body {
     display: flex;
     flex-direction: column;
     color: white;
+    min-height: 100vh;
+    justify-content: space-between;
     background: rgb(0, 0, 0);
     background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(208, 19, 86, 1) 52%, rgba(0, 0, 0, 1) 100%);
 }
@@ -29,17 +28,14 @@ body {
     body {
         background: #23272E;
         color: white;
+        min-height: 100vh;
     }
 }
-
 /*------------UTILIDADES----------*/
 :root {
     --rosa: #D01356;
     --rosa-Ligth: #f576a3;
 }
-
-
-
 main{
     display: flex;
     flex-direction: column;
@@ -86,10 +82,14 @@ main{
     width: 100%;
     display: block;
 }
-
-
-.hero-img:hover .conteiner-btn-edit{
-    z-index: 1000;
+.hero-img:hover .hero-text>h1{
+    background-color: transparent;
+    color: transparent;
+    border: none;
+}
+.hero-img:hover .conteiner-btn-edit .btn-edit{
+    background-color: var(--rosa);
+    color: white;
 }
 .slider-item:hover .hero-text>h1{
     background-color: transparent;
@@ -106,16 +106,12 @@ main{
     width: 100%;
     display: block;
 }
-
-
 section{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
-
 article{
     width: 90%;
     display: flex;
@@ -126,11 +122,6 @@ article{
     min-width: 300px;
     margin: auto;
 }
-
-
-
-
-
 /*------navegacion--------*/
 #menu {
     display: none;
@@ -170,7 +161,7 @@ article{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 40vh;
+    height: 70vh;
     justify-content: space-around;
     align-items: center;
     position: absolute;
@@ -230,7 +221,6 @@ article{
     justify-content: center;
     align-items: center;
     gap: 25px;
-
 }
 .by-user{
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -492,10 +482,8 @@ article{
 
 /*------footer----------------*/
 footer{
-
     padding: 10px;
     background-color: var(--rosa);
-
 }
 
 .footer{
@@ -519,7 +507,6 @@ footer{
     }
     .nosotrosM{
         width: 30%;
-
     }
 }
 .nosotros{
@@ -579,17 +566,16 @@ footer{
 .redes a:nth-child(1){
     color: #05f;
 }
-.redes a:nth-child(2){
-    color:#000;
+.redes a:nth-child(1){
+    color:rgba(255,0,0,0.5);
 }
-.redes a:nth-child(3){
+.redes a:nth-child(2){
     color: #09f;
 }
-.redes a:nth-child(4){
+.redes a:nth-child(3){
     color: #0f9;
 }
 /*formulario*/
-
 .contacto-form{
     max-width: 1000px;
     width: 80%;
@@ -611,7 +597,9 @@ h2{
 
 
 
-
+.table{
+    color: white;
+}
 
 
 

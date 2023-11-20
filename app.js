@@ -72,9 +72,6 @@ app.use('/cliente', clienteRouter);
 app.use('/producto', productoRouter);
 app.use('/pedido', pedidoRouter);
 app.get('/*', (req, res) => {
-    if(req.session){
-        res.redirect('/admin/home');
-    }
-    res.redirect('/usuario/home');
+    res.redirect('/usuario/login');
 })
 export default app

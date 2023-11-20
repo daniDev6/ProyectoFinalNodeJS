@@ -1,6 +1,6 @@
 
 import {Router} from 'express'
-import {goCrearProducto,getAllAdmins,getAdminById,createAdmin,updateAdmin,deleteAdmin,goFormulario,goGaleria,goHome,goNosotros,goHomeEdit} from '../controllers/adminController.js'
+import {goCrearProducto,goListaUsuarios,getAllAdmins,getAdminById,createAdmin,updateAdmin,deleteAdmin,goFormulario,goGaleria,goHome,goNosotros,goHomeEdit} from '../controllers/adminController.js'
 const router = Router();
 import { loginRequired } from '../auth/authController.js';
 // const {requiredScopes}=require('express-oauth2-jwt-bearer')
@@ -28,6 +28,7 @@ router.get('/formulario',loginRequired,goFormulario);
 router.get('/galeria',loginRequired,goGaleria);
 router.get('/nosotros',loginRequired,goNosotros);
 router.get('/crear/producto',loginRequired,goCrearProducto);
+router.get('/lista/usuarios',loginRequired,goListaUsuarios);
 
 
 

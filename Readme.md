@@ -12,7 +12,7 @@ En este modo usted puede navegar con y sin necesidad de loguearse
 
 En este modo usted puede navegar, editar, crear y modificar los productos que ofrece la pagina.
 
-si desea conocer el modo administrador lo invito a comunicarse conmigo: danielvillalbac97@gmail.com
+si encuentra alguyn defecto comuniquese al mail: danielvillalbac97@gmail.com
 
 
 
@@ -90,6 +90,7 @@ Rutas Principales
 ```
 
 ## Variables de entorno 
+estos son los nombres que debe usar para las variables de entorno
 ```
 DB_MONGOATLAS=example
 
@@ -97,6 +98,10 @@ DB_MONGOATLAS=example
 API_NAME_CLOUD=example
 API_KEY_CLOUD=example
 API_KEY_SECRET=example
+
+
+EMAILUSER=example@gmail.com
+EMAILPASS=example
 
 
 
