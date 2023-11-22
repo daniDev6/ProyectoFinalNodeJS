@@ -4,9 +4,9 @@ import Productos from '../models/productoModel.js'
 export const getAllClientes=async (req,res)=>{
     try{
         const clientes=await Cliente.find();
-        res.status(200).json(clientes);
+        res.status(200).redirect('/admin/lista/usuarios');
     }catch(err){
-        res.status(500).json({error:"error al obtener lista de clientes"});
+        res.status(500).render('errorAdmin',{error:"error al obtener lista de clientes"});
     }
 }
 
@@ -14,16 +14,16 @@ export const getClienteById=async (req,res)=>{
     const {email,password}=req.body;
     try{
         // const cliente=await Cliente.findById(req.params.id);
-        const cliente=await Cliente.findOne({email:email});
+        const cliente=await Cliente.findOne({email:email}).lean();
         if(!cliente ){
-            return res.status(404).json({error:"cliente no encontrado"});
+            return res.status(404).render({error:"cliente no encontrado"});
         }else if(cliente.password===password){
-            res.status(201).json({msg:`Bienvenido ${cliente.nombre}`});
+            res.status(201).render('home',cliente);
         }else{
-            res.status(404).json({error:"contraseña incorrecta"});
+            res.status(404).render('error',{error:"contraseña incorrecta"});
         }
     }catch(err){
-        res.status(500).json({error:"error al obtener cliente"});
+        res.status(500).render('error',{error:"error al obtener cliente"});
     }
 }
 
@@ -37,9 +37,9 @@ export const crearCliente=async (req,res)=>{
             nombre:username
         });
         await nuevoCliente.save();
-        res.status(201).json(nuevoCliente);
+        res.status(201).render('/',nuevoCliente);
     }catch(err){
-        res.status(500).json({error:"error al crear cliente"});
+        res.status(500).render('error',{error:"error al crear cliente"});
     }
 }
 
@@ -54,11 +54,11 @@ export const updateCliente=async (req,res)=>{
             {new:true}
             );
         if(!clienteActualizado){
-            return res.status(404).json({error:"cliente no encontrado"});
+            return res.status(404).render('error',{error:"cliente no encontrado"});
         }
-        res.status(200).json(clienteActualizado);
+        res.status(200).render('home',clienteActualizado);
     }catch(err){
-        res.status(500).json({error:"error al actualizar cliente"});
+        res.status(500).render('error',{error:"error al actualizar cliente"});
     }
 }
 
@@ -68,36 +68,55 @@ export const deleteCliente=async (req,res)=>{
         const clienteId=req.params.id;
         const clienteEliminado=await Cliente.findByIdAndDelete(clienteId);
         if(!clienteEliminado){
-            return res.status(404).json({error:"cliente no encontrado"});
+            return res.status(404).render('error',{error:"cliente no encontrado"});
         }
-        res.status(200).json(clienteEliminado);
+        res.status(200).render('homeAdmin',clienteEliminado);
     }catch(err){
-        res.status(500).json({error:"error al eliminar cliente"});
+        res.status(500).render('errorAdmin',{error:"error al eliminar cliente"});
     }
 }
 
 
 export const goHome=async(req,res)=>{
-    const productos=await Productos.find().lean()
-    const tortas=await Productos.find({categoria:1}).lean()
-    const casamiento=await Productos.find({categoria:2}).lean()
-    const baby=await Productos.find({categoria:3}).lean()
-    const home=await Productos.find({categoria:4}).lean()
-    res.render('home',{
+    try{
+
+        const productos=await Productos.find().lean()
+        const tortas=await Productos.find({categoria:1}).lean()
+        const casamiento=await Productos.find({categoria:2}).lean()
+        const baby=await Productos.find({categoria:3}).lean()
+        const home=await Productos.find({categoria:4}).lean()
+        res.render('home',{
         productos,tortas,casamiento,baby,home
     })
+    }catch(err){
+        res.status(500).render('errorAdmin',{error:"error al obtener lista de productos"});
+    }
 }
 export const goFormulario=(req,res)=>{
-    res.render('formulario')
+    try{
+        res.render('formulario')
+    }catch(err){
+        res.status(500).render('errorAdmin',{error:"error al obtener lista de productos"});
+    }
 }
 export const goGaleria=async(req,res)=>{
+    try{
+
+    
     const tortas=await Productos.find({categoria:1}).lean();    
     const casamiento=await Productos.find({categoria:2}).lean();    
     const baby=await Productos.find({categoria:3}).lean();    
     res.render('galeria',{
         tortas,casamiento,baby
     })
+    }catch(err){
+        res.status(500).render('errorAdmin',{error:"error al obtener lista de productos"});
+    }
 }
 export const goNosotros=(req,res)=>{
-    res.render('nosotros')
+    try{
+        res.render('nosotros')
+    }catch(err){
+        res.status(500).render('errorAdmin',{error:"error al obtener lista de productos"});
+    }
 }

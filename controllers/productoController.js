@@ -36,7 +36,7 @@ export const getAllProductos = async (req, res) => {
         const productos = await Producto.find();
         res.status(200).json(productos);
     } catch (err) {
-        res.status(500).json({ error: "error al obtener lista de productos" });
+        res.status(500).error('errorAdmin',{ error: "error al obtener lista de productos" });
     }
 }
 
@@ -48,13 +48,13 @@ export const getProductoById = async (req, res) => {
         }
         const producto = await Producto.findById(req.params.id).lean();
         if (!producto) {
-            return res.status(404).json({ error: "producto no encontrado" });
+            return res.status(404).render('errorAdmin',{ error: "producto no encontrado" });
         }
         res.render('productoId',{
             producto
         })
     } catch (err) {
-        res.status(500).render('error',{ error: "error al obtener producto" });
+        res.status(500).render('errorAdmin',{ error: "error al obtener producto" });
     }
 }
 
@@ -66,7 +66,7 @@ export const createProducto = async (req, res) => {
             if (req.files?.image) {
                 await fs.unlink(req.files.image.tempFilePath);
             }
-            return res.send("producto ya registrado")
+            return res.render("errorAdmin", { error: "producto ya registrado"})
         }
         const productoNuevo = new Producto(req.body);
         console.log(req.files.image)
@@ -87,7 +87,7 @@ export const createProducto = async (req, res) => {
             })
             await fs.unlink(req.files.image.tempFilePath);
         } else {
-            res.render('error', {
+            res.render('errorAdmin', {
                 error: 'no se subio la imagen'
             })
         }
@@ -98,7 +98,9 @@ export const createProducto = async (req, res) => {
             producto
         })
     } catch (err) {
-        res.send(err)
+        res.render('errorAdmin', {
+            error: 'error al crear producto'
+        })
     }
 }
 export const createProductos = async (req, res) => {
@@ -108,7 +110,7 @@ export const createProductos = async (req, res) => {
             if (req.files?.image) {
                 await fs.unlink(req.files.image.tempFilePath);
             }
-            return res.send("producto ya registrado")
+            return res.render("errorAdmin", { error: "producto ya registrado"})
         }
         const productoNuevo = Producto.insertMany(req.body);
         if (req.files?.image) {
@@ -172,9 +174,9 @@ export const deleteProducto = async (req, res) => {
         if (!productoEliminado) {
             return res.status(404).json({ error: "producto no encontrado" });
         }
-        res.status(200).json(productoEliminado);
+        res.status(200).rendirect('/admin/galeria');
     } catch (err) {
-        res.status(500).json({ error: "error al eliminar producto" });
+        res.status(500).render('errorAdmin',{ error: "error al eliminar producto" });
     }
 }
 export const viewUpdateProduct=async (req,res)=>{
@@ -187,7 +189,7 @@ export const viewUpdateProduct=async (req,res)=>{
             producto
         })
     }catch(err){
-        res.status(500).json({error:"error al obtener producto"});
+        res.status(500).render('errorAdmin',{error:"error al obtener producto"});
     }
 }
 
@@ -232,7 +234,7 @@ export const updateProducto = async (req, res) => {
         })
     }
     catch (err) {
-        res.status(500).render('error',{error: "error al actualizar producto" });
+        res.status(500).render('errorAdmin',{error: "error al actualizar producto" });
     }
 }
 
@@ -240,7 +242,7 @@ export const updateProducto = async (req, res) => {
 export const viewUpdateHomeProduct=async(req,res)=>{
     const producto=await Producto.findById(req.params.id).lean();
     if(!producto){
-        return res.status(404).render('error',{error:"producto no encontrado"});
+        return res.status(404).render('errorAdmin',{error:"producto no encontrado"});
     }
     res.render('homeEdit',{
         producto

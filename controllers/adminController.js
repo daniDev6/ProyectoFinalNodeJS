@@ -31,7 +31,7 @@ export const getAdminById = async (req, res) => {
         if (!administrador) {
             return res.status(404).render('errorAdmin', { error: "administrador no encontrado" });
         }
-        res.status(200).json(administrador);
+        res.status(200).render('listaUsuarios', administrador);
     } catch (err) {
         res.status(500).render('errorAdmin', { error: "error al obtener administrador" });
     }
@@ -48,7 +48,7 @@ export const updateAdmin = async (req, res) => {
         if (!administradorActualizado) {
             return res.status(404).render('errorAdmin', { error: "administrador no encontrado" });
         }
-        res.status(200).json(administradorActualizado);
+        res.status(200).render('listaUsuarios', administradorActualizado);
     } catch (err) {
         res.status(500).render('errorAdmin', { error: "error al actualizar administrador" });
     }
@@ -61,7 +61,8 @@ export const deleteAdmin = async (req, res) => {
         if (!administradorEliminado) {
             return res.status(404).render('errorAdmin', { error: "administrador no encontrado" });
         }
-        res.status(200).json(administradorEliminado);
+
+        res.status(200).redirect('/admin/lista/usuarios');
     } catch (err) {
         res.status(500).render('errorAdmin', { error: "error al eliminar administrador" });
     }

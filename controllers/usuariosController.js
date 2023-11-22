@@ -61,9 +61,8 @@ export const register = async (req, res) => {
         const user = await Usuario.create({ ...req.body, password: hashedPassword })
         enviarEmail(user)
             .then(() => {
-                console.log("Email enviado");
             }).catch((error) => {
-                console.log(error);
+                console.log(error)
             });
         // req.session.userId=user._id
         // return res.status(201).json({ message: 'user created', user: _.omit(user.toObject(), dbSecretFields) })
