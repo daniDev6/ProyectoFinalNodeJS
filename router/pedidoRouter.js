@@ -22,7 +22,7 @@ route.post('/admin',createPedidoAdmin);
 //ruta para actualizar pedido
 route.put('/:id',loginRequired,updatePedido);
 //ruta para eliminar pedido
-route.delete('/:id',loginRequired,deletePedido);
+route.post('/delete/:id',loginRequired,deletePedido);
 
 
 

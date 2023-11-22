@@ -14,7 +14,6 @@ export const getAllPedidos=async (req,res)=>{
 export const getPedidoById=async (req,res)=>{
     try{
         const {nombre}=req.query;
-        
         const pedido=await Pedido.findById(req.params.id);
         if(!pedido){
             return res.status(404).render('error',{error:"pedidos no encontrado"});
@@ -29,12 +28,13 @@ export const createPedido=async (req,res)=>{
     try{
         const nuevoPedido=await Pedido.create(req.body);
         await nuevoPedido.save();
+        console.log(nuevoPedido,req.body)
         enviarPresupuesto(nuevoPedido)
         .then(() => {
             res.render('formularioExitoso')
         })
         .catch((error) => {
-            res.status(500).render('error',{error:"error al crear pedidos"});
+            res.status(500).render('errorAdmin',{error:"error al crear pedidos"});
         });
         
     }catch(err){
@@ -80,7 +80,7 @@ export const deletePedido=async (req,res)=>{
         if(!pedidosEliminado){
             return res.status(404).render('error',{error:"pedidos no encontrado"});
         }
-        res.status(200).json(pedidosEliminado);
+        res.redirect('/pedido');
     }catch(err){
         res.status(500).render('error',{error:"error al eliminar pedidos"});
     }

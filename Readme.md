@@ -111,3 +111,15 @@ IS_PRODUCTION=example
 ```
 
 
+## Link a la aplicacion 
+Link al deploy de la aplicacion [Render page](https://proyectofinal-kbka.onrender.com/usuario/login).
+Ante cualquier duda no dude en contactarme: danielvillalbac97@gmail.com
+
+
+
+
+
+
+
+
+

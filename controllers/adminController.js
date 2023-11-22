@@ -25,12 +25,6 @@ export const goListaUsuarios = async (req, res) => {
     }
 
 }
-
-
-
-
-
-
 export const getAdminById = async (req, res) => {
     try {
         const administrador = await Admin.findById(req.params.id);
@@ -42,7 +36,6 @@ export const getAdminById = async (req, res) => {
         res.status(500).render('errorAdmin', { error: "error al obtener administrador" });
     }
 }
-
 export const updateAdmin = async (req, res) => {
     console.log('entre a actualizando admin')
     try {
@@ -61,7 +54,6 @@ export const updateAdmin = async (req, res) => {
     }
 }
 
-
 export const deleteAdmin = async (req, res) => {
     try {
         const administradorId = req.params.id;
@@ -74,9 +66,6 @@ export const deleteAdmin = async (req, res) => {
         res.status(500).render('errorAdmin', { error: "error al eliminar administrador" });
     }
 }
-
-
-
 export const createAdmin = async (req, res) => {
     try {
         const nuevoAdministrador = await Admin.create(req.body);
@@ -86,9 +75,6 @@ export const createAdmin = async (req, res) => {
         res.status(500).render('errorAdmin', { error: "error al crear administrador" });
     }
 }
-
-
-
 export const goHome = async (req, res) => {
     const productos = await Productos.find().lean()
     const tortas = await Productos.find({ categoria: 1 }).lean()
@@ -114,7 +100,6 @@ export const goFormulario = async (req, res) => {
     } catch (error) {
         res.status(404).render('errorAdmin', { error: "producto no encontrado" });
     }
-
 }
 export const goGaleria = async (req, res) => {
     const tortas = await Productos.find({ categoria: 1 }).lean();
@@ -125,19 +110,9 @@ export const goGaleria = async (req, res) => {
         tortas, casamiento, baby
     })
 }
-
 export const goNosotros = (req, res) => {
     res.render('nosotrosAdmin')
 }
 export const goCrearProducto = (req, res) => {
     res.render('crearProducto')
 }
-
-
-
-
-
-
-
-
-
