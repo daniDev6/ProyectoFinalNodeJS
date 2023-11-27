@@ -63,9 +63,9 @@ export const createProducto = async (req, res) => {
     try {
         const product = await Producto.findOne({ nombre: req.body.nombre, categoria: req.body.categoria });
         if (product) {
-            if (req.files?.image) {
+            /*if (req.files?.image) {
                 await fs.unlink(req.files.image.tempFilePath);
-            }
+            }*/
             return res.render("errorAdmin", { error: "producto ya registrado"})
         }
         const productoNuevo = new Producto(req.body);
@@ -85,7 +85,7 @@ export const createProducto = async (req, res) => {
                     console.log(err)
                 }
             })*/
-            await fs.unlink(req.files.image.tempFilePath);
+            /*await fs.unlink(req.files.image.tempFilePath);*/
         } else {
             res.render('errorAdmin', {
                 error: 'no se subio la imagen'
