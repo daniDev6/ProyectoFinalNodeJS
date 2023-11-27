@@ -13,7 +13,7 @@ import { uploadCasamientoPhoto, uploadCumplePhoto, uploadBabyPhoto,uploadHomePho
 
 */
 
-const analizarCategoria=async(producto)=>{
+const analizarCategoria=async(producto,req)=>{
     if (producto.categoria == 1) {
         return  await uploadCasamientoPhoto(req.files.image.tempFilePath);
     } else if (producto.categoria == 2) {
@@ -68,13 +68,13 @@ export const createProducto = async (req, res) => {
             }*/
             return res.render("errorAdmin", { error: "producto ya registrado"})
         }
-        const productoNuevo = new Producto(req.body);
+        const productoNuevo =await Producto.create(req.body);
         console.log(req.files.image)
         if (req.files?.image) {
-           /* const tempFilePath = req.files.image.tempFilePath
+            /* const tempFilePath = req.files.image.tempFilePath
             const originalName = req.files.image.name
             const fileExtencion = originalName.split('.').pop()*/
-            const productImg = await analizarCategoria(req.body);
+            const productImg = await analizarCategoria(productoNuevo,req);
             productoNuevo.imagen = {
                 public_id: productImg.public_id,
                 secure_url: productImg.secure_url
@@ -116,22 +116,22 @@ export const createProductos = async (req, res) => {
         }
         const productoNuevo = Producto.insertMany(req.body);
         if (req.files?.image) {
-            const tempFilePath = req.files.image.tempFilePath
-            const originalName = req.files.image.name
-            const fileExtencion = originalName.split('.').pop()
-            let productImg=analizarCategoria(req.body)
+            // const tempFilePath = req.files.image.tempFilePath
+            // const originalName = req.files.image.name
+            // const fileExtencion = originalName.split('.').pop()
+            let productImg=analizarCategoria(req.body,req)
         productoNuevo.imagen = {
             public_id: productImg.public_id,
             secure_url: productImg.secure_url
         }
-        const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
-        await fs.rename(tempFilePath, newTempFilePath, (err) => {
-            if (err) {
-                res.render('error', {
-                    error: 'no se subio la imagen'
-                })
-            }
-        })
+        // const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
+        // await fs.rename(tempFilePath, newTempFilePath, (err) => {
+        //     if (err) {
+        //         res.render('error', {
+        //             error: 'no se subio la imagen'
+        //         })
+        //     }
+        // })
         await fs.unlink(req.files.image.tempFilePath);
         await productoNuevo.save();
         const producto=await Producto.findById(productoNuevo._id).lean();
@@ -210,22 +210,22 @@ export const updateProducto = async (req, res) => {
 
                 await deletePhoto(productoNuevo.imagen.public_id);
             }
-            const tempFilePath = req.files.image.tempFilePath
-            const originalName = req.files.image.name
-            const fileExtencion = originalName.split('.').pop()
-            let productImg=analizarCategoria(productoNuevo)
+            // const tempFilePath = req.files.image.tempFilePath
+            // const originalName = req.files.image.name
+            // const fileExtencion = originalName.split('.').pop()
+            let productImg=analizarCategoria(productoNuevo,req)
             productoNuevo.imagen = {
                 public_id: productImg.public_id,
                 secure_url: productImg.secure_url
             }
-            const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
-            await fs.rename(tempFilePath, newTempFilePath, (err) => {
-                if (err) {
-                    res.render('error',{
-                        error:err
-                    })
-                }
-            })
+            // const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
+            // await fs.rename(tempFilePath, newTempFilePath, (err) => {
+            //     if (err) {
+            //         res.render('error',{
+            //             error:err
+            //         })
+            //     }
+            // })
             await fs.unlink(req.files.image.tempFilePath);
             await productoNuevo.save();
         } 
