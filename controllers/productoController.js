@@ -172,7 +172,7 @@ export const deleteProducto = async (req, res) => {
         const productoEliminado = await Producto.findByIdAndDelete(productoId);
         
         if (!productoEliminado) {
-            return res.status(404).json({ error: "producto no encontrado" });
+            return res.status(404).render('errorAdmin',{ error: "producto no encontrado" });
         }
         res.redirect('/admin/galeria');
     } catch (err) {
@@ -195,23 +195,36 @@ export const viewUpdateProduct=async (req,res)=>{
 
 
 export const updateProducto = async (req, res) => {
+
     try {
+
+
         const productoId = req.params.id;
+
+
         const productoActualizado = await Producto.findById(productoId, req.body);
         if (!productoActualizado) {
+
+
             return res.status(404).json({ error: "producto no encontrado" });
         }
+
+
         const productoNuevo = await Producto.findByIdAndUpdate(productoId, req.body, { new: true });
         if (req.files?.image) {
+
+
             if(productoNuevo.imagen.public_id){
                 console.log(productoNuevo.imagen.public_id)
 
+
                 await deletePhoto(productoNuevo.imagen.public_id);
+
             }
             // const tempFilePath = req.files.image.tempFilePath
             // const originalName = req.files.image.name
             // const fileExtencion = originalName.split('.').pop()
-            let productImg=analizarCategoria(productoNuevo,req)
+            let productImg=await analizarCategoria(productoNuevo,req)
             productoNuevo.imagen = {
                 public_id: productImg.public_id,
                 secure_url: productImg.secure_url
