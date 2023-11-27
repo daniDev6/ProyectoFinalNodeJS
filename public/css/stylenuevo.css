@@ -623,6 +623,10 @@ h2{
 
 
 
-
+.d-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 
