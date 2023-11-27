@@ -1,4 +1,12 @@
 {{>navAdmin}}
+<style>
+    .eliminar{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 <main>
 
 
@@ -38,8 +46,11 @@
                 <button type="submit" class="btn btn-outline-warning w-50">Actualizar Datos</button>
             </div>
     </form>
-    <form action="/producto/delete/{{producto._id}}" method="post">
-                <button type="submit" class="btn btn-outline-danger w-50">Borrar Datos</button>
+    <form action="/producto/delete/{{producto._id}}" method="post" class="eliminar">
+    <div class="botones-container">
+
+                <button type="submit" class="btn btn-outline-danger">Borrar Datos</button>
+    </div>
                 </form>
 </div>
 </main> 
