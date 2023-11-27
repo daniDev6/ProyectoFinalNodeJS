@@ -79,7 +79,7 @@ export const createProducto = async (req, res) => {
                 public_id: productImg.public_id,
                 secure_url: productImg.secure_url
             }
-           /* const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
+            /* const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
             await fs.rename(tempFilePath, newTempFilePath, (err) => {
                 if (err) {
                     console.log(err)
@@ -98,8 +98,6 @@ export const createProducto = async (req, res) => {
             producto
         })
     } catch (err) {
-        console.log("error localizado")
-        console.log(err)
         res.render('errorAdmin', {
             error: 'error al crear producto'
         })
@@ -178,7 +176,6 @@ export const deleteProducto = async (req, res) => {
         }
         res.redirect('/admin/galeria');
     } catch (err) {
-        console.log(err);
         res.status(500).render('errorAdmin',{ error: "error al eliminar producto" });
     }
 }

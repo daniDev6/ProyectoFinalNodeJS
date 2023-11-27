@@ -52,7 +52,6 @@ export const logout = async (req, res) => {
 
 export const register = async (req, res) => {
     try {
-        console.log(req.body, 'entrando a register')
         const usuarios=await Usuario.find({email:req.body.email})
         if(usuarios.length>0){
             return res.status(400).render('loginLayout', { layout: null, error: 'email ya registrado' })
@@ -64,7 +63,7 @@ export const register = async (req, res) => {
             }).catch((error) => {
                 console.log(error)
             });
-        // req.session.userId=user._id
+        req.session.userId=user._id
         // return res.status(201).json({ message: 'user created', user: _.omit(user.toObject(), dbSecretFields) })
         if (user.rol == 1) {
             res.redirect('/admin/home')
