@@ -98,6 +98,7 @@ export const createProducto = async (req, res) => {
             producto
         })
     } catch (err) {
+        console.log("error localizado")
         console.log(err)
         res.render('errorAdmin', {
             error: 'error al crear producto'
