@@ -16,7 +16,7 @@ route.post('/update/:id',loginRequired,updateProducto);
 route.get('/update/:id',loginRequired,viewUpdateProduct);
 route.get('/update/home/:id',loginRequired,viewUpdateHomeProduct);
 //ruta para eliminar producto
-route.delete('/:id',loginRequired,deleteProducto);
+route.post('/delete/:id',loginRequired,deleteProducto);
 
 
 

@@ -85,7 +85,7 @@ export const createProducto = async (req, res) => {
                     console.log(err)
                 }
             })*/
-            /*await fs.unlink(req.files.image.tempFilePath);*/
+            await fs.unlink(req.files.image.tempFilePath);
         } else {
             res.render('errorAdmin', {
                 error: 'no se subio la imagen'
@@ -176,8 +176,9 @@ export const deleteProducto = async (req, res) => {
         if (!productoEliminado) {
             return res.status(404).json({ error: "producto no encontrado" });
         }
-        res.status(200).rendirect('/admin/galeria');
+        res.redirect('/admin/galeria');
     } catch (err) {
+        console.log(err);
         res.status(500).render('errorAdmin',{ error: "error al eliminar producto" });
     }
 }
