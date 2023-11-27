@@ -71,20 +71,20 @@ export const createProducto = async (req, res) => {
         const productoNuevo = new Producto(req.body);
         console.log(req.files.image)
         if (req.files?.image) {
-            const tempFilePath = req.files.image.tempFilePath
+           /* const tempFilePath = req.files.image.tempFilePath
             const originalName = req.files.image.name
-            const fileExtencion = originalName.split('.').pop()
+            const fileExtencion = originalName.split('.').pop()*/
             const productImg = await analizarCategoria(req.body);
             productoNuevo.imagen = {
                 public_id: productImg.public_id,
                 secure_url: productImg.secure_url
             }
-            const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
+           /* const newTempFilePath = `${req.files.image.tempFilePath}.${fileExtencion}`
             await fs.rename(tempFilePath, newTempFilePath, (err) => {
                 if (err) {
                     console.log(err)
                 }
-            })
+            })*/
             await fs.unlink(req.files.image.tempFilePath);
         } else {
             res.render('errorAdmin', {
